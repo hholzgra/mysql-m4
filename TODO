@@ -1,0 +1,6 @@
+* fix "mutual exclusive" stuff
+* support srcdir/builddir split with WITH_MYSQL_SRC
+* add macro that explicitly checks for mariabd native client only
+* identify more forks, esp. percona, webscalesql
+* add install prefix libdir check in MYSQL_NEED_EMBEDDED
+* extra checks for SAFEMALLOC etc. in MYSQL_DEBUG_SERVER?

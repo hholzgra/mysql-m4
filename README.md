@@ -61,6 +61,8 @@ example.c:
 Macros
 ------
 
+The following variables are set after calling MYSQL_SUBST()
+
 ### WITH_MYSQL
 
 Adds a `--with-mysql=...` option that expects either the path to the `mysql_config` 
@@ -84,13 +86,24 @@ This macro needs to be called before any `MYSQL_USE_*` and `MYSQL_NEED_*` macros
 
 ### MYSQL_USE_CLIENT_API
 
+Sets flags necessary to compile and link against the mysql client library 
+(or the mariadb native client library)
+
 ### MYSQL_USE_EMBEDDED_API
+
+Sets flags necessary to compile and link against the mysql embedded server library
 
 ### MYSQL_USE_NDB_API
 
+Sets flags necessary to compile and link against the MySQL Cluster NDBAPI
+
 ### MYSQL_USE_UDF_API
 
+Sets flags necessary to build User Defined Function libraries
+
 ### MYSQL_USE_PLUGIN_API
+
+Sets flags necessary to build mysql plugins
 
 ### MYSQL_NEED_VERSION
 
@@ -116,17 +129,33 @@ Variables
 
 ### MYSQL_VERSION
 
+Full version number of the detected mysql version
+
 ### MYSQL_FORK
+
+Name of the detected mysql fork (only `mysql` or `mariadb` for now)
 
 ### MYSQL_CFLAGS
 
+Compiler flags needed to compile C source files
+
 ### MYSQL_CXXFLAGS
+
+Compiler flags needed to compile C++ source files
 
 ### MYSQL_LDFLAGS
 
+Linker flags needed to link against the selected APIs
+
 ### MYSQL_LIBS
+
+Libraries needed to link
 
 ### MYSQL_PLUGIN_DIR
 
+Plugin library directory
+
 ### MYSQL_SRCDIR
+
+Server source directory (when using `--with-mysql-src`)
 

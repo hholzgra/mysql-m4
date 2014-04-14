@@ -22,6 +22,26 @@ This set of autoconf macros supports
 Example
 -------
 
+A minimal project using this may look like this:
+
+    .
+	|-- m4
+    |   `-- ax_compare_version.m4
+    |   `-- mysql.m4
+	|-- configure.ac
+	|-- example.c
+    `-- Makefile.am
+
+and could be built using
+
+    autoreconf -vfi
+	./configure
+	make
+
+The `mysql.m4` and `ax_compare_version.m4` files are
+copies of the files in this directory, the other files
+could look like this:
+
 configure.ac:
 
     AC_CONFIG_MACRO_DIR([m4])

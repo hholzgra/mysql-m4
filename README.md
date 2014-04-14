@@ -45,10 +45,10 @@ Makefile.m4:
     
 	bin_PROGRAMS=example
 	example_SOURCE=example.c
-	#include <stdio.h>
 
 example.c:
 
+	#include <stdio.h>
     #include <mysql.h>
     
     int main(int argc, char **argv)
@@ -63,7 +63,24 @@ Macros
 
 ### WITH_MYSQL
 
+Adds a `--with-mysql=...` option that expects either the path to the `mysql_config` 
+(or `mariadb_config`) binary or the mysql install prefix. If no path is given it
+checks for a `(mysql|maria)_config` binary in the current $PATH
+
+This macro needs to be called before any `MYSQL_USE_*` and `MYSQL_NEED_*` macros
+
 ### WITH_MYSQL_SRC
+
+Adds a `--with-mysql-src=...` option that expects the path to a mysql server
+source directory. This option can be used instead or in addition to `WITH_MYSQL`,
+but only one of `--with-mysql-src` or `--with-mysql` can be used when running
+`configure`.
+
+The idea behind this option is that some projects, especially plugins and UDFs,
+may rely on header (or even source) files that come with the server source but
+are not part of the installed headers.
+
+This macro needs to be called before any `MYSQL_USE_*` and `MYSQL_NEED_*` macros
 
 ### MYSQL_USE_CLIENT_API
 
@@ -75,13 +92,24 @@ Macros
 
 ### MYSQL_USE_PLUGIN_API
 
-### MYSQL_SUBST
-
 ### MYSQL_NEED_VERSION
+
+Check for a specific minimal mysql version.
+
+    MYSQL_NEED_VERSION([5.5.0])
 
 ### MYSQL_NEED_FORK
 
+Check for a specific mysql fork. Currently supported values are `mysql` and
+`mariadb`. Other forks like `parcona` or `webscalesql` can't be detected yet.
 
+    MYSQL_NEED_FORK([mariadb])
+
+### MYSQL_SUBST
+
+This needs to be the very last macro call, it collects results of all
+previous macros and exports them as variables that can be using in 
+`configure.ac` and `Makefile.am` files.
 
 Variables
 ---------

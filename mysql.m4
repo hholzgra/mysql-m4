@@ -127,10 +127,10 @@ AC_DEFUN([WITH_MYSQL], [
   then
     MYSQL_FORK=mysql
     include_dir=`$MYSQL_CONFIG --variable=pkgincludedir`
-    if grep -q ndb "$include_dir"/mysql_version.h
+    if grep -qi ndb "$include_dir"/mysql_version.h
     then
       MYSQL_FORK=mysql_cluster
-    elif grep -q MariaDB "$include_dir"/mysql_version.h
+    elif grep -qi MariaDB "$include_dir"/mysql_version.h
     then
       MYSQL_FORK=mariadb
     fi    
@@ -178,10 +178,10 @@ AC_DEFUN([WITH_MYSQL_SRC], [
             MYSQL_SRCDIR=`readlink -f $with_mysql_src`
             MYSQL_VERSION=`grep MYSQL_SERVER_VERSION $MYSQL_SRCDIR/include/mysql_version.h | sed -e's/"$//g' -e's/.*"//g'`
 	    MYSQL_FORK=mysql
-	    if grep -q ndb $MYSQL_SRCDIR/include/mysql_version.h
+	    if grep -qi ndb $MYSQL_SRCDIR/include/mysql_version.h
 	    then
 	      MYSQL_FORK=mysql_cluster
-	    elif grep -q MariaDB $MYSQL_SRCDIR/include/mysql_version.h
+	    elif grep -qi MariaDB $MYSQL_SRCDIR/include/mysql_version.h
 	    then
 	      MYSQL_FORK=mariadb
 	    fi
